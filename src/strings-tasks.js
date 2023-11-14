@@ -40,8 +40,11 @@ function getStringLength(value) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  if (typeof value === 'string' || value instanceof String) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -156,8 +159,13 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeFirstOccurrences(str, value) {
-  const newstr = str.replace(value, '');
-  return newstr;
+  const index = str.indexOf(value);
+
+  if (index !== -1) {
+    return str.slice(0, index) + str.slice(index + value.length);
+  }
+
+  return str;
 }
 
 /**
